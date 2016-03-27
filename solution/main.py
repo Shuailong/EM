@@ -15,11 +15,13 @@ import numpy as np
 
 from mygmm import GMM
 
+# from sklearn.mixture import GMM
+
 def main():
     X = np.loadtxt(open('../data/data.txt',"rb"),delimiter=" ",skiprows=0)
-    # plt.scatter(X[:,0], X[:,1])
-    # plt.show()
-    clf = GMM()
+    plt.scatter(X[:,0], X[:,1])
+    plt.show()
+    clf = GMM(n_components=2, n_init=1, tol=1e-6, n_iter=100)
     clf.fit(X)
 
 
