@@ -1,7 +1,7 @@
 # Mixture of Gaussians & EM
 Machine Learning Assignment 3
 
-# Visualization
+### Visualization
 
 | Data distribution             | EM result                       |
 |:-----------------------------:|:-------------------------------:|
