@@ -1,10 +1,8 @@
-#  Mixture of Gaussians & EM
+# Mixture of Gaussians & EM
 Machine Learning Assignment 3
 
-### Data distribution
-![Data](./data/data_dist.png)
+# Visualization
 
-### EM result
-![Result](./data/EM_result.png)
-
-
+| Data distribution             | EM result                       |
+|:-----------------------------:|:-------------------------------:|
+|![Data](./data/data_dist.png)  |![Result](./data/EM_result.png)  |
