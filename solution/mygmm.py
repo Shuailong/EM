@@ -24,6 +24,10 @@ import matplotlib
 from warnings import warn
 import time
 
+from images2gif import writeGif
+from PIL import Image
+import os
+
 class GMM:
     def __init__(self, n_components=1, covariance_type='spherical', tol=1e-3, n_iter=100, n_init=1, verbose=False, soft=True):
         self.n_components = n_components
@@ -48,6 +52,11 @@ class GMM:
 
 
     def fit(self, X):
+        # remove old image files
+        filelist = ["../output_image/"+f for f in os.listdir("../output_image/")]
+        for f in filelist:
+            os.remove(f)
+
         d = len(X[0])
         n = len(X)
 
@@ -130,6 +139,7 @@ class GMM:
 
             plt.figure(2)
             plt.plot(range(len(Ls)), Ls)
+            plt.title('Likelihood')
             plt.savefig('../output_image/L.png', dpi=300)
             plt.close()
 
@@ -158,7 +168,7 @@ class GMM:
             circle = plt.Circle(self.means_[i], sqrt(self.covars_[i]), color=self._colors[i], fill=False)
             plt.gcf().gca().add_artist(circle)
             plt.text(self.means_[i][0], self.means_[i][1], str(round(self.weights_[i], 3)), fontsize=7, color=self._colors[i])
-
+        plt.title('Final result')
         plt.savefig('../output_image/best.png', dpi=300)
         plt.close()
         # if self.converged_:
@@ -171,6 +181,12 @@ def main():
     X = np.loadtxt(open('../data/data.txt',"rb"),delimiter=" ",skiprows=0)
     clf = GMM(n_components=2, n_init=1, tol=1e-6, n_iter=100, soft=True, verbose=True)
     clf.fit(X)
+
+    # make a gif image
+    file_names = ['../output_image/'+fn for fn in os.listdir('../output_image/') if fn.startswith('iteration')]
+    file_names.sort(key=lambda x: int(x[len('../output_image/iteration'):-len('.png')]))
+    images = [Image.open(fn) for fn in file_names]
+    writeGif("../output_image/movie.gif", images, duration=0.25)
 
 if __name__ == '__main__':
     main()
