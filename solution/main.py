@@ -19,8 +19,9 @@ from mygmm import GMM
 
 def main():
     X = np.loadtxt(open('../data/data.txt',"rb"),delimiter=" ",skiprows=0)
-    plt.gca().set_aspect('equal', adjustable='box')
-    plt.scatter(X[:,0], X[:,1])
+    # plt.gca().set_aspect('equal', adjustable='box')
+    # plt.scatter(X[:,0], X[:,1])
+    # plt.savefig('../data/data_dist.png', dpi=300)
     plt.show()
     clf = GMM(n_components=2, n_init=1, tol=1e-6, n_iter=100)
     clf.fit(X)
