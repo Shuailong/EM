@@ -130,7 +130,7 @@ class GMM:
 
             plt.figure(2)
             plt.plot(range(len(Ls)), Ls)
-            plt.savefig('../output_image/L.png', dpi=900)
+            plt.savefig('../output_image/L.png', dpi=300)
             plt.close()
 
             if L > bestL:
@@ -159,7 +159,7 @@ class GMM:
             plt.gcf().gca().add_artist(circle)
             plt.text(self.means_[i][0], self.means_[i][1], str(round(self.weights_[i], 3)), fontsize=7, color=self._colors[i])
 
-        plt.savefig('../output_image/best.png', dpi=900)
+        plt.savefig('../output_image/best.png', dpi=300)
         plt.close()
         # if self.converged_:
         # plt.show()
