@@ -8,6 +8,6 @@ Machine Learning Assignment 3
 |![Data](./data/data_dist.png)  |![Result](./output_image/best.png)  |
 
 ### Evolving of the algorithm
-| Cluster evolving               | Likelyhood evolving            |
+| Cluster evolving               | Likelihood evolving            |
 |:-----------------------------:|:-------------------------------:|
 |![Data](./output_image/movie.gif) |![Data](./output_image/L.png) |
