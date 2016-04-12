@@ -106,9 +106,12 @@ class GMM:
                     else:
                         label = np.argmax([weights_[i]*self._gaussian(X[t], means_[i], covars_[i]) for i in range(self.n_components)])
                         p[label][t] = 1
+                        for i in range(self.n_components):
+                            if label != i: p[i][t] = 0
 
                 # M-step
                 n_cap = [sum([p[i][t] for t in range(n)]) for i in range(self.n_components)]
+                print n_cap
                 weights_ = [n_cap[i]/float(n) for i in range(self.n_components)]
                 means_ = [sum([p[i][t] * X[t] for t in range(n)])/n_cap[i] for i in range(self.n_components)]
                 # print means_
@@ -188,7 +191,7 @@ class GMM:
 
 def main():
     X = np.loadtxt(open('../data/data.txt',"rb"),delimiter=" ",skiprows=0)
-    clf = GMM(n_components=2, n_init=1, tol=1e-6, n_iter=200, verbose=True, image=True)
+    clf = GMM(n_components=2, n_init=1, tol=1e-6, n_iter=200, verbose=True, image=False, soft=False)
     clf.fit(X)
 
 if __name__ == '__main__':
