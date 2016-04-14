@@ -190,7 +190,7 @@ class GMM:
 
 def main():
     X = np.loadtxt(open('../data/data.txt',"rb"),delimiter=" ",skiprows=0)
-    clf = GMM(n_components=2, n_init=1, tol=1e-6, n_iter=200, verbose=False, image=True, soft=True)
+    clf = GMM(n_components=2, n_init=1, tol=1e-6, n_iter=200, verbose=True, image=True, soft=False)
     clf.fit(X)
 
 if __name__ == '__main__':
